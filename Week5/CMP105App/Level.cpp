@@ -12,6 +12,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	zomb.setTexture(&zombTexture);
 
 	zomb.setInput(input);
+
+	marioTexture.loadFromFile("gfx/MarioSheetT.png");
+	mario.setSize(sf::Vector2f(50, 60));
+	mario.setPosition(500, 500);
+	mario.setTexture(&marioTexture);
+
+	mario.setInput(input);
 }
 
 Level::~Level()
@@ -23,12 +30,14 @@ Level::~Level()
 void Level::handleInput(float dt)
 {
 	zomb.handleInput(dt);
+	mario.handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
 	zomb.update(dt);
+	mario.update(dt);
 }
 
 // Render level
@@ -37,6 +46,7 @@ void Level::render()
 	beginDraw();
 
 	window->draw(zomb);
+	window->draw(mario);
 
 	endDraw();
 }
